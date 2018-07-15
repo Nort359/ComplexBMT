@@ -1,0 +1,173 @@
+/* ==== Необходимые переменные ==== */
+
+$mainFontSize: 16px
+$mainFornFamily: 'Roboto', sans-serif
+
+$mainBgColor: #fff
+
+$textColorDefault: #5A5A5A
+$linkColorHover: #53B73F
+
+$transitionEffect: all .3s ease-in-out
+
+/* ==== Миксин задаёт margin и padding ==== */
+
+=margAndPad( $margin, $padding )
+	margin: $margin
+	padding: $padding
+
+/* ==== Миксин задаёт margin и padding ==== */
+
+=getTransition( $time )
+	-webkit-transition: all $time ease-in-out
+			transition: all $time ease-in-out
+
+/* ==== Общие настройки стилей ==== */
+
+body, html
+	+margAndPad( 0, 0 )
+	height: 100%
+
+body
+	+margAndPad( 0, 0 )
+	font-family: $mainFornFamily
+	font-size: $mainFontSize
+	background-color: $mainBgColor
+	color: $textColorDefault
+
+/* ==== Общие настройки ссылок ==== */
+
+a
+	+getTransition( .3s )
+	color: $textColorDefault
+
+	&:hover, &:focus
+		text-decoration: none
+		color: $linkColorHover
+		position: relative
+
+/* ==== Общие настройки кнопок ==== */
+
+/* ==== Миксин задаёт margin и padding ==== */
+=bgColorAndBorder( $color, $borderSize )
+	background-color: $color
+	border: $borderSize solid $color
+
+.btn
+	text-indent: 0
+
+	&.btn-primary
+		+bgColorAndBorder( #53B73F, 1px )
+		
+		font-size: 18px
+		
+		+getTransition( .5s )
+
+		&:hover
+			+bgColorAndBorder( #3CB31F, 1px )
+	
+			font-size: 18px
+
+/* ==== Стили выравнивание текста ==== */
+
+.text-justify
+	text-align: justify
+	text-indent: 30px
+
+.text-center
+	text-align: center
+
+/* ==== Отступы ==== */
+
+.row-margin-top
+	margin-top: 60px
+
+.col-margin-top
+	margin-top: 40px
+
+/* ==== Текст, отличающийся от общей массы ==== */
+.large-text
+	font-size: 18px
+
+/* ==== Стили для начального экрана: Header ==== */
+
+header
+	position: relative
+	height: 100vh
+	overflow: hidden
+
+/* ==== Навигационное меню ==== */
+
+/* ==== Миксин задающий box-shadow со всеми префиксами ==== */
+
+=bxShadow( $color )
+	-webkit-box-shadow: 0 2px 2px $color
+	   -moz-box-shadow: 0 2px 2px $color
+		-ms-box-shadow: 0 2px 2px $color
+		 -o-box-shadow: 0 2px 2px $color
+		    box-shadow: 0 2px 2px $color
+
+.top-menu-navigation
+	background: rgba(0, 0, 0, .4)
+	position: absolute
+	left: 0
+	right: 0
+	z-index: 9999
+	width: 100%
+	line-height: 75px
+
+	&.default
+		position: fixed
+		top: 0
+		background: rgba(0, 0, 0, .6)
+
+		line-height: 55px
+
+		+bxShadow( rgba(0, 0, 0, .4) )
+
+	& .row
+		text-align: center
+
+	& ul
+		list-style: none
+		display: block
+		width: 80%
+		margin: 0 auto
+		text-align: center
+
+	& li
+		float: left
+		margin: 0 20px
+		font-size: 18px
+
+		& a
+			position: relative
+			color: #fff
+			text-transform: uppercase
+
+			&:hover
+				color: #53B73F
+
+				&:before
+					transform: scale(1)
+
+			&:before
+				content: ''
+				background-color: #53B73F
+				position: absolute
+				top: 100%
+				left: 0
+				width: 100%
+				height: 3px
+				transform: scale(0)
+				transition: all 0.3s ease-in-out
+
+.logo-wsr
+	width: 60px
+
+.top-menu-navigation a.link-logo-wsr:hover:before
+	transform: scale(0)
+
+#get-record
+	font-size: 22px
+	padding: 10px 20px
